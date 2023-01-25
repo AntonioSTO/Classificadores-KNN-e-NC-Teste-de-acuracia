@@ -1,0 +1,9 @@
+test/3708022006int.txt int
+test/b3128012004int.txt int
+test/3524012006int.txt int
+test/a3322112005pot.txt pot
+test/3302062006pot.txt pot
+test/b1719012004pot.txt pot
+test/a2018032006poc.txt poc
+test/1016102006poc.txt poc
+test/d1504052006poc.txt poc

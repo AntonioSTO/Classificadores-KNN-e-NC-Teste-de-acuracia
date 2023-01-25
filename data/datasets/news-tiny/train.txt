@@ -1,0 +1,15 @@
+train/c3719052006int.txt int
+train/3903082005int.txt int
+train/3829042006int.txt int
+train/4023112005int.txt int
+train/3624052006int.txt int
+train/a3426072006pot.txt pot
+train/3502072006pot.txt pot
+train/3319042006pot.txt pot
+train/a3015012004pot.txt pot
+train/4107052006pot.txt pot
+train/a1903012004poc.txt poc
+train/a2023032006poc.txt poc
+train/1931052005poc.txt poc
+train/b1602062006poc.txt poc
+train/c1906052005poc.txt poc

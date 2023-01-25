@@ -1,0 +1,15 @@
+test/b0913032006inf.txt inf
+test/319012004inf.txt inf
+test/b405012004inf.txt inf
+test/1109102006inf.txt inf
+test/a1403072006inf.txt inf
+test/10092005at2.txt at2
+test/0728082006at2.txt at2
+test/0316022006at2.txt at2
+test/0212062006at2.txt at2
+test/1204122005at2.txt at2
+test/3106022003pot.txt pot
+test/b3415032006pot.txt pot
+test/c3222082006pot.txt pot
+test/3613102006pot.txt pot
+test/1926122005pot.txt pot
