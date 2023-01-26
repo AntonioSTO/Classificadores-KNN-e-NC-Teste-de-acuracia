@@ -2,6 +2,8 @@
 from typing import Dict, List
 from .classifier_interface import ClassifierInterface
 from src.datasets.dataset_interface import DatasetInterface
+import numpy as np
+import math
 
 
 class KnnClassifier(ClassifierInterface):
@@ -10,9 +12,45 @@ class KnnClassifier(ClassifierInterface):
 
     def train(self, train_dataset: DatasetInterface) -> None:
         # salvar as amostras do dataset
+        self.n_dataset = train_dataset.size()
+        amostras_dataset = []
+        for sample in range(self.n_dataset):
+            amostras_dataset.append(sample)
+
         pass
 
     def predict(self, test_dataset: DatasetInterface) -> List[str]:
         """ para cada amostra no dataset, buscar os k vizinhos mais proximos e 
         retornar a classe mais frequente entre eles """
+
+        k = 5
+        amostras_test = []
+
+        for sample in range(test_dataset.size()):
+            amostras_test.append(test_dataset.get(sample))
+        
+        distancia = []
+        calc = []
+
+        for i in range(0, len(amostras_test)):       #percorre os pontos na lista
+            for j in range(i+1, self.n_dataset):     #pontos posteriores ao ponto Lista[i]
+                dist_atual = 0    #a ser usado posteriormente
+                
+                for k in range(0, len(amostras_test[0][0])):     #percorre as coordenadas dos pontos
+                    dist_atual += (amostras_test[i][0][k] - amostras_test[j][0][k])**2  #parte de dentro da raiz quadrada
+                
+                dist_atual = math.sqrt(dist_atual)  #raiz quadrada
+                calc.append(dist_atual)
+
+            distancia.append(calc)
+            calc.clear()
+
+        
+        menores_dist = []
+
+        #ADICIONAR DIST
+
+                
+
+
         return []
