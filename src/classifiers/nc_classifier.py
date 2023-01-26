@@ -1,43 +1,45 @@
-
 from typing import Dict, List
 from .classifier_interface import ClassifierInterface
 from src.datasets.dataset_interface import DatasetInterface
 import numpy as np
+from math import dist
 
 class NearestCentroidClassifier(ClassifierInterface):
     def __init__(self) -> None:
         super().__init__()
         self.tuplas=[]
+        self.Centroides=[]
+        self.classes=[]
         
     def train(self, train_dataset: DatasetInterface) -> None:
-        classes=[]
+        self.classes=[]
         vetores=[]
-        Centroides=[]
+        self.Centroides=[]
         for i in range(train_dataset.size()):
             self.tuplas.append(train_dataset.get(i))
-            if self.tuplas[i][0] not in classes:
-                classes.append([self.tuplas[i][1]])
-        for i in range(len(classes())):
+            if self.tuplas[i][0] not in self.classes:
+               self.classes.append([self.tuplas[i][1]])
+        for i in range(len(self.classes())):
             for j in range(len(self.tuplas)):
-                if self.tuplas[j][1]==classes[i]:
-                    classes[i].append(self.tuplas[j][0])
-                    vetores.append(classes[i][j])
+                if self.tuplas[j][1]==self.classes[i]:
+                    self.classes[i].append(self.tuplas[j][0])
+                    vetores.append(self.classes[i][j])
             centro=np.mean(vetores, axis=0)
-            Centroides.append(centro)
+            self.Centroides.append(centro)
             vetores.clear()
-        
-            
-
-
-   
-            
-
-
-
-
-
-    
-
     def predict(self, test_dataset: DatasetInterface) -> List[str]:
-        """ para cada amostra no dataset, buscar o centroide mais proximo e respectiva retornar a classe """
-        return []
+        predicted_classes=[]
+
+        menor_dist=float('inf')
+        indice_menor_dist=''
+        for i in range(test_dataset.size()):
+                for j in range(len(self.Centroides)):
+                        distancia=dist(test_dataset.get(i)[1], self.Centroides[j])
+                        if distancia<menor_dist:
+                            menor_dist=distancia
+                            indice_menor_dist=j
+                predicted_classes.append(self.classes[indice_menor_dist])
+                
+        return predicted_classes
+
+
