@@ -6,6 +6,7 @@ def load_config(path: str) -> Dict:
     """ le o arquivo json e retorna como um dicionario """
 
     with open(path) as file:
-        configs = json.load(file)
+        json_str = file.read()
+        configs = json.loads(json_str)
 
     return configs
