@@ -31,12 +31,6 @@ class ImageDataset(DatasetInterface):
 
         # newPath = self.path[:self.path.rfind("/") + 1] + self.img_name[idx]
 
-        '''if self.path[-8] == 't':
-            self.path = self.path.replace("/test.txt", "")
-        
-        else:
-            self.path = self.path.replace("/train.txt", "")'''
-        
         if "test" in self.path:
             self.path = self.path.replace("test.txt", "")
 
