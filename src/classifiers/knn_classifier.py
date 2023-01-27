@@ -32,55 +32,56 @@ class KnnClassifier(ClassifierInterface):
         
         distancia = []
         calc = []
-        
+        calc_c = []
+        controle = []
 
-        for i in range(0, len(amostras_test)):       
-            for j in range(i+1, self.n_dataset):    
+        for i in range(test_dataset.size()):       
+            for j in range(len(self.amostras_dataset)):    
                 dist_atual = 0   
                 
-                for k in range(0, len(amostras_test[0][0])):     
+                for k in range(len(amostras_test[0][0])):     
                     dist_atual += (amostras_test[i][0][k] - self.amostras_dataset[j][0][k])**2 
                 
                 dist_atual = math.sqrt(dist_atual)  
                 calc.append(dist_atual)
+                calc_c.append(dist_atual)
             
 
             distancia.append(calc)
+            controle.append(calc_c)
 
 
             calc = []
+            calc_c = []
 
-
-        controle = []
-        for n in distancia:
-            controle.append(n)
         
         for n in range(len(controle)):
             controle[n].sort()
 
-
-        
         
         menores_dist_id = []
         menores_dist = []
         
         for i in range(len(amostras_test)):
-            for j in range(len(controle)):
-                for d in range(K):
-                    menores_dist.append(distancia[j].index(controle[j][d]))
-    
-            
-                menores_dist_id.append(menores_dist)
-                menores_dist = []
+            # for j in range(len(controle)):
+            for d in range(K):
+                menores_dist.append(distancia[i].index(controle[i][d]))
 
-            print(menores_dist_id)
+        
+            menores_dist_id.append(menores_dist)
+            menores_dist = []
+
+        # print(menores_dist_id)
             
         classes = []
         contador = []
         classificador = []
         
+        print(len(amostras_test))
+        print(len(menores_dist_id))
+
         for i in range(len(amostras_test)):
-            for j in menores_dist_id:
+            for j in range(len(menores_dist_id)):
                 if not self.amostras_dataset[j][1] in classes:
                     classes.append(self.amostras_dataset[j][1])
                     contador.append(1)
@@ -90,6 +91,6 @@ class KnnClassifier(ClassifierInterface):
             contador = []
             classes = []
 
-            
+        print(classificador)
             
         return classificador

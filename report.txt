@@ -1,6 +1,6 @@
 Tipo de dado: image
-Diretório: data/datasets/img_small/
-classificador: nc
-Tempo de treino: 1563175201.055s
-Tempo de inferência por amostra: 0.000s
-Precisão: 0.33
+Diretorio: data/datasets/img_small/
+Classificador: knn
+Tempo de treino: 1563176845.586s
+Tempo de inferencia por amostra: 0.001s
+Precisao: 0.33
