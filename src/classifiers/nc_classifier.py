@@ -27,21 +27,18 @@ class NearestCentroidClassifier(ClassifierInterface):
                     print(self.classes[i])
         
             centro=np.mean(vetores, axis=0)
+            print(centro)
             print(len(vetores))
             self.Centroides.append(centro)
             vetores.clear()
-        print(self.classes)
-           
     def predict(self, test_dataset: DatasetInterface) -> List[str]:
         predicted_classes=[]
-    
-
         menor_dist=float('inf')
-        indice_menor_dist=''
+        indice_menor_dist=2
         for i in range(test_dataset.size()):
-                for j in range(len(self.Centroides)):
-                        distancia=dist(test_dataset.get(i)[0],self.Centroides[j])
-                        if distancia<menor_dist:
+                for j in range(len(self.classes)):
+                        distancia=dist(self.tuplas[i][0],self.Centroides[j])
+                        if distancia<=menor_dist:
                             menor_dist=distancia
                             indice_menor_dist=j
                 predicted_classes.append(self.classes[indice_menor_dist])
