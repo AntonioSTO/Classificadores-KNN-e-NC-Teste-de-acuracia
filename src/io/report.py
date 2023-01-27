@@ -9,4 +9,4 @@ def write_report(path: str, config: Dict, metrics_values) -> None:
                     f'classificador: {config["classifier"]}\n'
                     f'Tempo de treino: {metrics_values["tempo_treino"]:.3f}s\n'
                     f'Tempo de inferência por amostra: {metrics_values["tempo_inferencia"]:.3f}s\n'
-                    f'Precisão: {metrics_values["accuracy"]:.2f}')
+                    f'Precisão: {metrics_values["precisao"]:.2f}')

@@ -6,6 +6,7 @@ from src.io.config import load_config
 from src.io.report import write_report
 
 
+
 def main():
     # obter os nomes dos arquivos de configuracao e de saida da linha de comando
     parser = argparse.ArgumentParser()

@@ -29,8 +29,6 @@ class ImageDataset(DatasetInterface):
         # ler a i-esima imagem do disco usando a biblioteca cv2 e retornar
         # a imagem e a respectiva classe
 
-        # newPath = self.path[:self.path.rfind("/") + 1] + self.img_name[idx]
-
         if "test" in self.path:
             self.path = self.path.replace("test.txt", "")
 
@@ -45,6 +43,7 @@ class ImageDataset(DatasetInterface):
         for i in range(len(imagem)):
             for j in range(len(imagem[0])):
                 imagem_vet.append(int(imagem[i][j]))
+                
 
 
 

@@ -7,9 +7,7 @@ import time
 
 
 class Experiment:
-    def __init__(self,
-                 train_dataset: DatasetInterface,
-                 test_dataset: DatasetInterface):
+    def __init__(self,train_dataset: DatasetInterface, test_dataset: DatasetInterface):
         self.train_dataset = train_dataset
         self.test_dataset = test_dataset
         self.true_classes = self._get_true_classes_from_dataset(
