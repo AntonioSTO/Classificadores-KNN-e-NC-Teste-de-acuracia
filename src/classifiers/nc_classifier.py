@@ -20,7 +20,6 @@ class NearestCentroidClassifier(ClassifierInterface):
             if int(self.tuplas[i][1]) not in self.classes:
                self.classes.append([int(self.tuplas[i][1])])
                
-        print(self.classes)
         for i in range(len(self.classes)):
             for j in range(len(self.tuplas)):
                 if int(self.tuplas[j][1])==self.classes[i][0]:
@@ -42,8 +41,6 @@ class NearestCentroidClassifier(ClassifierInterface):
                             menor_dist=distancia
                             indice_menor_dist=j
                 predicted_classes.append(self.classes[indice_menor_dist][0])
-        print(predicted_classes)
-        print(len(predicted_classes))
                 
         return predicted_classes
 

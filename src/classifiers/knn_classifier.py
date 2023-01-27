@@ -14,7 +14,7 @@ class KnnClassifier(ClassifierInterface):
         self.n_dataset = train_dataset.size()
         amostras_dataset = []
         for sample in range(self.n_dataset):
-            amostras_dataset.append(sample)
+            amostras_dataset.append(train_dataset.get(sample))
             
         self.amostras_dataset = amostras_dataset
 
@@ -24,7 +24,7 @@ class KnnClassifier(ClassifierInterface):
         """ para cada amostra no dataset, buscar os k vizinhos mais proximos e 
         retornar a classe mais frequente entre eles """
 
-        k = 5
+        K = 5
         amostras_test = []
 
         for sample in range(test_dataset.size()):
@@ -32,29 +32,48 @@ class KnnClassifier(ClassifierInterface):
         
         distancia = []
         calc = []
+        
 
-        for i in range(0, len(amostras_test)):       #percorre os pontos na lista
-            for j in range(i+1, self.n_dataset):     #pontos posteriores ao ponto Lista[i]
-                dist_atual = 0    #a ser usado posteriormente
+        for i in range(0, len(amostras_test)):       
+            for j in range(i+1, self.n_dataset):    
+                dist_atual = 0   
                 
-                for k in range(0, len(amostras_test[0][0])):     #percorre as coordenadas dos pontos
-                    dist_atual += (amostras_test[i][0][k] - amostras_test[j][0][k])**2  #parte de dentro da raiz quadrada
+                for k in range(0, len(amostras_test[0][0])):     
+                    dist_atual += (amostras_test[i][0][k] - self.amostras_dataset[j][0][k])**2 
                 
-                dist_atual = math.sqrt(dist_atual)  #raiz quadrada
+                dist_atual = math.sqrt(dist_atual)  
                 calc.append(dist_atual)
+            
 
             distancia.append(calc)
-            calc.clear()
 
-        controle = distancia.sort()
+
+            calc = []
+
+
+        controle = []
+        for n in distancia:
+            controle.append(n)
+        
+        for n in range(len(controle)):
+            controle[n].sort()
+
+
+        
+        
         menores_dist_id = []
+        menores_dist = []
         
         for i in range(len(amostras_test)):
-            for d in range(k):
-                menores_dist.append(distancia.index(controle[d]))
-        
-            menores_dist_id.append(menores_dist)
-            menores_dist = []
+            for j in range(len(controle)):
+                for d in range(K):
+                    menores_dist.append(distancia[j].index(controle[j][d]))
+    
+            
+                menores_dist_id.append(menores_dist)
+                menores_dist = []
+
+            print(menores_dist_id)
             
         classes = []
         contador = []
