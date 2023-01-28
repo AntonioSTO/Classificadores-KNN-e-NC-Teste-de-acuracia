@@ -27,7 +27,6 @@ class NewsDataset(DatasetInterface):
         # ler a i-esima noticia do disco e retornar o texto como uma string e
         # a classe
         words_list = []
-        num_of_words = []
         
         if "test" in self.path:
             self.path.replace("test.txt", "")
@@ -40,20 +39,8 @@ class NewsDataset(DatasetInterface):
         with open(novo_path) as file:
             news = file.readline().split()
         
-        for some_word in news:
-            if some_word in __stop_words__:
-                news.remove(some_word)
-
-        for word in news:
-            if word not in words_list:
-                words_list.append(word)
-                num_of_words.append(int("1"))
-            elif word in words_list:
-                i = words_list.index("word")
-                num_of_words[i] = num_of_words[i] + 1
+        for i in range(len(news)):
+            if news[i] not in __stop_words__:
+                words_list.append(news[i])
         
-        words_vector = [words_list, num_of_words]
-
-
-
-        return (news, self.news_class[idx])
+        return (words_list, self.news_class[idx]) #retornando a noticia sem stop words e a sua classe
