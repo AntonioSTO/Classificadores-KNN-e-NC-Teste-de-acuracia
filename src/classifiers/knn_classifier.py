@@ -1,4 +1,4 @@
-from typing import Dict, List
+'''from typing import Dict, List
 from .classifier_interface import ClassifierInterface
 from src.datasets.dataset_interface import DatasetInterface
 import numpy as np
@@ -92,5 +92,35 @@ class KnnClassifier(ClassifierInterface):
             classes = []
 
         print(classificador)
+            
+        return classificador'''
+from typing import List
+from src.datasets.dataset_interface import DatasetInterface
+import numpy as np
+import math
+
+class KnnClassifier:
+    def __init__(self) -> None:
+        pass
+
+    def train(self, train_dataset: DatasetInterface) -> None:
+        self.n_dataset = train_dataset.size()
+        self.amostras_dataset = [train_dataset.get(sample) for sample in range(self.n_dataset)]
+        
+    def predict(self, test_dataset: DatasetInterface) -> List[str]:
+        K = 5
+        amostras_test = [test_dataset.get(sample) for sample in range(test_dataset.size())]
+        controle = []
+        classificador = []
+        
+        for i in range(test_dataset.size()):
+            distancia = []
+            for j in range(len(self.amostras_dataset)):
+                dist_atual = math.sqrt(sum([(amostras_test[i][0][k] - self.amostras_dataset[j][0][k])**2 for k in range(len(amostras_test[0][0]))]))
+                distancia.append(dist_atual)
+                
+            menores_dist_id = [j for j, dist in sorted(enumerate(distancia), key=lambda x: x[1])[:K]]
+            classes = [self.amostras_dataset[j][1] for j in menores_dist_id]
+            classificador.append(max(set(classes), key=classes.count))
             
         return classificador
