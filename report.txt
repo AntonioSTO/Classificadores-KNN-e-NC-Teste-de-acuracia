@@ -1,6 +1,6 @@
-Tipo de dado: image
-Diretorio: data/datasets/img_medium/
-Classificador: nc
-Tempo de treino: 1658335627.338s
-Tempo de inferencia por amostra: 0.010s
-Precisao: 0.67
+Tipo de dado: news
+Diretorio: data/datasets/news-small/
+Classificador: knn
+Tempo de treino: 1563433908.588s
+Tempo de inferencia por amostra: 0.035s
+Precisao: 0.47

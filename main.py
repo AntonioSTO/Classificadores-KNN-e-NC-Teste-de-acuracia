@@ -4,6 +4,7 @@ from src.experiment import Experiment
 import argparse
 from src.io.config import load_config
 from src.io.report import write_report
+from src.datasets.fazer_vetores import Fazer_vetor_geral
 
 
 
@@ -19,8 +20,14 @@ def main():
 
     config = load_config("data/configs/" + args.config_path)
 
-    train_dataset = create_dataset(config["train_path"], config["type"])
-    test_dataset = create_dataset(config["test_path"], config["type"])
+    if config["type"] == "news":
+        vg = Fazer_vetor_geral(config["train_path"], config["test_path"], config["type"])
+        vg.vetor_geral()
+    else:
+        vg = None
+
+    train_dataset = create_dataset(config["train_path"], config["type"], vg)
+    test_dataset = create_dataset(config["test_path"], config["type"], vg)
     classifier = create_classifier(config["classifier"])
 
     experiment = Experiment(train_dataset, test_dataset)
