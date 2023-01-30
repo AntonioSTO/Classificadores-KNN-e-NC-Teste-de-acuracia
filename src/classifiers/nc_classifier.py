@@ -1,7 +1,6 @@
 from typing import Dict, List
 from .classifier_interface import ClassifierInterface
 from src.datasets.dataset_interface import DatasetInterface
-import numpy as np
 from math import dist
 
 class NearestCentroidClassifier(ClassifierInterface):
@@ -36,9 +35,9 @@ class NearestCentroidClassifier(ClassifierInterface):
         print(self.classes)
     def predict(self, test_dataset: DatasetInterface) -> List[str]:
         predicted_classes=[]
-        distancias=[]
-
-
+        distancias=0
+        menor_dist=float('inf')
+        indice_menordist=0
         soma=0
         for i in range(test_dataset.size()):
             self.tuplas_test.append(test_dataset.get(i))
@@ -47,12 +46,14 @@ class NearestCentroidClassifier(ClassifierInterface):
             for j in range(len(self.Centroides)):      
                 for k in range(len(self.Centroides[j])):
                         soma=dist(self.tuplas_test[i][0],self.Centroides[j])
-                distancias.append([soma, self.classes[j]])
-            distancias.sort(key=lambda x:x[0])
-            menor_dist=distancias[0]
-            predicted_classes.append(menor_dist[1])
-            print(distancias)
-            distancias.clear()
+                distancias=soma
+                if distancias<=menor_dist:
+                    menor_dist=distancias
+                    indice_menordist=j
+            distancias=0
+            menor_dist=float('inf')
+            predicted_classes.append(self.classes[indice_menordist])
+            
         print(predicted_classes)   
         return predicted_classes
 
