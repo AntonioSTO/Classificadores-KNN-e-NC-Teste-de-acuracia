@@ -33,7 +33,7 @@ class Experiment:
 
         metrics = {
             "precisao": accuracy(self.true_classes, pred_classes),
-            "tempo_treino": (tempo_final_treino - tempo_inicial_treino/self.test_dataset.size()),
+            "tempo_treino": (tempo_final_treino - tempo_inicial_treino)/self.test_dataset.size(),
             "tempo_inferencia": (tempo_final_predict - tempo_inicial_predict)/self.train_dataset.size()
         }
 

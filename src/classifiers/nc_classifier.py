@@ -31,8 +31,7 @@ class NearestCentroidClassifier(ClassifierInterface):
                 media=soma/len(self.vetores[i][0])
                 self.Centroides[i].append(media)
                 soma=0
-        print(self.Centroides)
-        print(self.classes)
+
     def predict(self, test_dataset: DatasetInterface) -> List[str]:
         predicted_classes=[]
         distancias=0
@@ -44,8 +43,8 @@ class NearestCentroidClassifier(ClassifierInterface):
         soma_dist=0
         for i in range(test_dataset.size()):       
             for j in range(len(self.Centroides)):      
-                for k in range(len(self.Centroides[j])):
-                        soma=dist(self.tuplas_test[i][0],self.Centroides[j])
+                #for k in range(len(self.Centroides[j])):
+                soma=dist(self.tuplas_test[i][0],self.Centroides[j])
                 distancias=soma
                 if distancias<=menor_dist:
                     menor_dist=distancias
@@ -53,8 +52,8 @@ class NearestCentroidClassifier(ClassifierInterface):
             distancias=0
             menor_dist=float('inf')
             predicted_classes.append(self.classes[indice_menordist])
-            
-        print(predicted_classes)   
+                        
+        
         return predicted_classes
 
 

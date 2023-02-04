@@ -47,37 +47,22 @@ class NewsDataset(DatasetInterface):
 
         #TODO: trocar vetor por classe
         
-        vet_result = [0] * len(self.vetor_geral.vetor)
+        self.d_words = {}
 
         for n in range(len(words_list)):
-            if words_list[n] in self.vetor_geral.vetor:
-                id = self.vetor_geral.vetor.index(words_list[n])
-                vet_result[id] += 1
-                words_list[n] = None
+            w = words_list[n]
+            if w not in self.d_words:
+                self.d_words[w] = 1
+            else:
+                self.d_words[w] += 1
 
-        return (vet_result, self.news_class[idx]) #retornando a noticia sem stop words e a sua classe
-        
-    """def vectorize_text_file(self, compara: List[str], comparador: List[str]):
-        self.compara = compara
-        self.comparador = comparador
-        vet_result = [0] * len(comparador)
+                #id = self.vetor_geral.vetor.index(words_list[n])
+                #vet_result[id] += 1
+                #words_list[n] = None
 
-        for n in range(len(comparador)):
-            if comparador[n] in compara:
-                ""item += 1""
-                pass
-            pass
+        vet_result = [0] * len(self.vetor_geral.vetor)
+        for w, c in self.d_words.items():
+            idx_word = self.vetor_geral.vetor.index(w)
+            vet_result[idx_word] = c
 
-
-        def vectorize_text_files(filenames):
-    vectorized_texts = []
-    for filename in filenames:
-        with open(filename, 'r') as f:
-            text = f.read()
-            text_tokens = text.split()
-            vectorized_text = [0] * len(text_tokens)
-            for i, token in enumerate(text_tokens):
-                if token in unique_tokens:
-                    vectorized_text[i] = 1
-            vectorized_texts.append(vectorized_text)
-    return vectorized_texts"""
+        return (vet_result, self.news_class[idx]) #retornando a noticia vetorizada, sem stop words e a sua classes
