@@ -1,6 +1,6 @@
 {
     "type": "news",
-    "train_path": "data/datasets/news-medium-small/train.txt",
-    "test_path": "data/datasets/news-medium-small/test.txt",
+    "train_path": "data/datasets/news-small/train.txt",
+    "test_path": "data/datasets/news-small/test.txt",
     "classifier": "knn"
 }

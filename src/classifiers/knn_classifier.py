@@ -2,6 +2,7 @@ from typing import List
 from src.datasets.dataset_interface import DatasetInterface
 import numpy as np
 import math
+from tqdm import tqdm
 
 class KnnClassifier:
     def __init__(self) -> None:
@@ -17,7 +18,7 @@ class KnnClassifier:
         controle = []
         classificador = []
         
-        for i in range(test_dataset.size()):
+        for i in tqdm(range(test_dataset.size()), desc="Progresso do teste: "):
             distancia = []
             for j in range(len(self.amostras_dataset)):
                 dist_atual = math.sqrt(sum([(amostras_test[i][0][k] - self.amostras_dataset[j][0][k])**2 for k in range(len(amostras_test[0][0]))]))

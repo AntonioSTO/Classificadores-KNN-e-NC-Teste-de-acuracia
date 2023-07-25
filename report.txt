@@ -1,6 +1,6 @@
 Tipo de dado: news
-Diretorio: data/datasets/news-medium-small/
-Classificador: nc
-Tempo de treino: 0.029s
-Tempo de inferencia por amostra: 0.008s
-Precisao: 0.66
+Diretorio: data/datasets/news-small/
+Classificador: knn
+Tempo de treino: 0.011s
+Tempo de inferencia por amostra: 0.022s
+Precisao: 0.47

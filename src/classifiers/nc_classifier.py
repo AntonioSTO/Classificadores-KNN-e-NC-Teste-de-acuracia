@@ -2,6 +2,7 @@ from typing import Dict, List
 from .classifier_interface import ClassifierInterface
 from src.datasets.dataset_interface import DatasetInterface
 from math import dist
+from tqdm import tqdm
 
 class NearestCentroidClassifier(ClassifierInterface):
     def __init__(self) -> None:
@@ -41,7 +42,7 @@ class NearestCentroidClassifier(ClassifierInterface):
         for i in range(test_dataset.size()):
             self.tuplas_test.append(test_dataset.get(i))
         soma_dist=0
-        for i in range(test_dataset.size()):       
+        for i in tqdm(range(test_dataset.size()), desc="Progresso do teste: "):       
             for j in range(len(self.Centroides)):      
                 #for k in range(len(self.Centroides[j])):
                 soma=dist(self.tuplas_test[i][0],self.Centroides[j])
